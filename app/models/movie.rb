@@ -1,4 +1,6 @@
 class Movie < ApplicationRecord
+  has_many :reviews, dependent: :destroy
+
   validates :title, :released_on, :duration, presence: true
 
   validates :description, length: { minimum: 25 }
@@ -10,7 +12,7 @@ class Movie < ApplicationRecord
     message: "must be a JPG or PNG image"
   }
 
-  RATINGS = %w(G PG PG-13 R NC-17)
+  RATINGS = %W(G PG PG-13 R NC-17 #{"Not Rated"})
   validates :rating, inclusion: { in: RATINGS }
 
   def self.released
