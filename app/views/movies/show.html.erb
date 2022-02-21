@@ -6,12 +6,15 @@
     <h1><%= @movie.title %></h1>
     <h2>
       <%= year_of(@movie) %> &bull; <%= @movie.rating %>
-      <div class="reviews"><%= link_to pluralize(@movie.reviews.count, "review"), movie_reviews_path(@movie) %></div>
+      <div class="reviews">
+        <%= link_to pluralize(@movie.reviews.count, "review"), movie_reviews_path(@movie) %>
+      </div>
     </h2>
     <p>
       <%= @movie.description %>
     </p>
     <table>
+      <%= link_to "Write a review", new_movie_review_path(@movie), class:"review" %>
       <tr>
         <th>Director:</th>
         <td><%= @movie.director %></td>
@@ -26,6 +29,10 @@
       </tr>
     </table>
   </div>
+</section>
+<section>
+  <h2> Write a review!</h2>
+  <%= render "reviews/form", movie:@movie, review: @movie.reviews.new %>
 </section>
   <section class="admin">
     <%= link_to "Edit", edit_movie_path(@movie), class: "button" %>
