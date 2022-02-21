@@ -11,4 +11,8 @@ class Review < ApplicationRecord
     less_than_or_equal_to: 5,
     message: "must be between 1 and 5"
   }
+
+  def stars_as_percent
+    (stars / 5.0) * 100.0
+  end
 end
