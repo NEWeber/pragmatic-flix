@@ -33,6 +33,15 @@ class Movie < ApplicationRecord
 
 
   def flop?
-    total_gross < 225_000_000
+    total_gross < 225_000_000 || (reviews.count >= 50 && reviews.average_stars >= 4.0)
   end
+
+  def average_stars
+    reviews.average(:stars) || 0.0
+  end
+
+  def average_stars_as_percent
+    (average_stars / 5.0) * 100.0
+  end
+
 end
