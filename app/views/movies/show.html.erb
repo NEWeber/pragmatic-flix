@@ -35,8 +35,9 @@
   <h2> Write a review!</h2>
   <%= render "reviews/form", movie:@movie, review: @movie.reviews.new %>
 </section>
+<% if current_user_admin? %>
   <section class="admin">
     <%= link_to "Edit", edit_movie_path(@movie), class: "button" %>
     <%= link_to "Delete", @movie, class: "button", method: :delete, data: { confirm: "Really delete movie?" } %>
   </section>
-</section>
+<% end %>
