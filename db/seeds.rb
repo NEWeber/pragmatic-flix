@@ -171,7 +171,7 @@ Movie.create!([
     released_on: '2001-12-19',
     director: 'Peter Jackson',
     duration: '178 minutes',
-    image_file_name: 'lotr-fellowship.jpg'
+    image_file_name: 'lotr-fellowship.png'
   },
   {
     title: 'The Court Jester',
@@ -185,7 +185,7 @@ Movie.create!([
     released_on: '1956-01-22',
     director: 'Melvin Frank and Norman Panama',
     duration: '101 minutes',
-    image_file_name: 'jester.jpg'
+    image_file_name: 'jester.png'
   },
   {
     title: 'Batman',
