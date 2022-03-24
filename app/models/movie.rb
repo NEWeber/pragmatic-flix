@@ -11,6 +11,8 @@ class Movie < ApplicationRecord
 
   has_one_attached :main_image
 
+  validate :acceptable_image
+
   validates :title, presence: true, uniqueness: true
   validates :released_on, :duration, presence: true
 
@@ -47,6 +49,18 @@ class Movie < ApplicationRecord
   private
     def set_slug
       self.slug = title.parameterize
+    end
+
+    def acceptable_image
+      return unless main_image.attached?
+
+      unless main_image.byte_size <= 1.megabyte
+        errors.add(:main_image, "image file too large, make under 1 megabyte")
+      end
+      acceptable_types = ["image/png", "image/jpeg"]
+      unless acceptable_types.include?(main_image.content_type)
+        errors.add(:main_image, "image must be PNG or JPEG")
+      end
     end
 
 end
